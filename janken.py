@@ -19,7 +19,7 @@ if ene == 0:
     print("グー")
 elif ene == 1:
     print("パー")
-elif ene == 0:
+elif ene == 2:
     print("チョキ")
 
 if ene == hand:
