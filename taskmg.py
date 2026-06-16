@@ -1,6 +1,20 @@
+import os
+
 tasks = []
 
+#ファイルパスのおまじない
+tasks_path = os.path.join(os.path.dirname(__file__), "tasks.txt")
+
+
+
+
 while True:
+
+    #ファイルの読み込みをして配列に代入
+    with open(tasks_path, "r", encoding="utf-8") as f:
+        tasks = f.read().splitlines()
+
+
 
     print("項目を選んでください。")
     print("1:タスクの追加")
@@ -18,21 +32,30 @@ while True:
         task = input("タスクを入力してください")
 
         tasks.append(task)
+
+        with open(tasks_path, "w", encoding="utf-8") as f:
+            for i in tasks:
+                f.write(i + "\n")
+                
     
     if a == 2:
-        for i in range(len(tasks)):
-            print(tasks[i])
+        for i in tasks:
+            print(i)
 
     if a == 3:
-        for i in range(len(tasks)):
-            print(tasks[i])
+        for i in tasks:
+            print(i)
         
         ctask = input("完了するタスクを入力してください")
 
-        for i in range(len(tasks)):
-            if ctask == tasks[i]:
-                print("[✓]" + tasks[i])
-                tasks.pop(i)
+        for i in tasks:
+            if ctask == i:
+                print("[✓]" + i)
+                tasks.remove(i)
+
+                with open(tasks_path, "w", encoding="utf-8") as f:
+                    for i in tasks:
+                        f.write(i + "\n")
 
 
 
