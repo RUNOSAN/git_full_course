@@ -1,4 +1,5 @@
 import os
+import requests
 
 tasks = []
 
@@ -20,11 +21,12 @@ while True:
     print("1:タスクの追加")
     print("2:一覧表示")
     print("3:タスクの完了")
-    print("4:終了")
+    print("4:天気の表示")
+    print("5:終了")
 
     a = int(input("数字を入力してください"))
 
-    if a == 4:
+    if a == 5:
         break
     
 
@@ -56,6 +58,13 @@ while True:
                 with open(tasks_path, "w", encoding="utf-8") as f:
                     for i in tasks:
                         f.write(i + "\n")
+    
+    if a == 4:
+        spot = input("天気を知りたい場所をローマ字で入力してください").title()
+
+        print(requests.get(f"https://wttr.in/{spot}?format=3").text)
+
+
 
 
 
