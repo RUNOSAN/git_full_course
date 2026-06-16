@@ -1,28 +1,44 @@
 tasks = []
 
-for i in range(4):
-    task = input("タスクを入力してください。最大4つまで")
+while True:
 
-    tasks.append(task)
-    print( task + "を追加しました")
+    print("項目を選んでください。")
+    print("1:タスクの追加")
+    print("2:一覧表示")
+    print("3:タスクの完了")
+    print("4:終了")
 
-print("完了したタスクを選択してください")
+    a = int(input("数字を入力してください"))
 
-for i in range(len(tasks)):
-    print("[]" + tasks[i])
+    if a == 4:
+        break
+    
 
-a = ""
+    if a == 1:
+        task = input("タスクを入力してください")
 
-while a != "完了":
-    a = input("完了したタスクを入力してください")
-    print("すべて入力し終わったら完了と入力してください")
+        tasks.append(task)
+    
+    if a == 2:
+        for i in range(len(tasks)):
+            print(tasks[i])
 
-    for i in range(len(tasks)):
-        if tasks[i] == a:
-            print("[✓]" + tasks[i])
-            print("完了しました")
-            tasks.pop(i)
-            break
+    if a == 3:
+        for i in range(len(tasks)):
+            print(tasks[i])
+        
+        ctask = input("完了するタスクを入力してください")
+
+        for i in range(len(tasks)):
+            if ctask == tasks[i]:
+                print("[✓]" + tasks[i])
+                tasks.pop(i)
+
+
+
+   
+
+   
             
     
 
