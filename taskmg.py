@@ -6,14 +6,44 @@ tasks = []
 #ファイルパスのおまじない
 tasks_path = os.path.join(os.path.dirname(__file__), "tasks.txt")
 
+def readtasks():
+    with open(tasks_path, "r", encoding="utf-8") as f:
+        tasklist= f.read().splitlines()
+        return tasklist
+
+def showtasks(tasklist):
+    for i in tasklist:
+            print(i)
 
 
+def taskaddfile(tasklist):
+    with open(tasks_path, "w", encoding="utf-8") as f:
+        for i in tasklist:
+            f.write(i + "\n")
+
+def addtask(tasklist):
+    task = input("タスクを入力してください")
+
+    tasklist.append(task)
+
+    taskaddfile(tasklist)
+    
+
+def ctask(tasklist):
+    showtasks(tasklist)
+
+    cleartask = input("完了するタスクを入力してください")
+
+    for i in tasklist:
+        if cleartask == i:
+            print("[✓]" + i)
+            tasklist.remove(i)
+            taskaddfile(tasklist)
 
 while True:
 
     #ファイルの読み込みをして配列に代入
-    with open(tasks_path, "r", encoding="utf-8") as f:
-        tasks = f.read().splitlines()
+    tasks = readtasks()
 
 
 
@@ -31,33 +61,14 @@ while True:
     
 
     if a == 1:
-        task = input("タスクを入力してください")
-
-        tasks.append(task)
-
-        with open(tasks_path, "w", encoding="utf-8") as f:
-            for i in tasks:
-                f.write(i + "\n")
+        addtask(tasks)
                 
     
     if a == 2:
-        for i in tasks:
-            print(i)
+        showtasks(tasks)
 
     if a == 3:
-        for i in tasks:
-            print(i)
-        
-        ctask = input("完了するタスクを入力してください")
-
-        for i in tasks:
-            if ctask == i:
-                print("[✓]" + i)
-                tasks.remove(i)
-
-                with open(tasks_path, "w", encoding="utf-8") as f:
-                    for i in tasks:
-                        f.write(i + "\n")
+        ctask(tasks)
     
     if a == 4:
         spot = input("天気を知りたい場所をローマ字で入力してください").title()

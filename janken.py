@@ -1,38 +1,67 @@
 import random
 
-ene = random.randint(0,2)
 
-ply = input("グー、チョキ、パー、を入力してください")
+def get_computer_choice():
+    ene = random.randint(0,2)
+    if ene == 0:
+        comhand = "グー"
+    elif ene == 1:
+        comhand = "パー"
+    elif ene == 2:
+        comhand = "チョキ"
+    return comhand
 
-if ply == "グー":
-    hand = 0
-elif ply == "パー":
-    hand = 1
-elif ply == "チョキ":
-    hand = 2
-else:
-    print("じゃんけんの手を入力してください")
+def judge(comhand,hand):
+    if comhand == hand:
+        x = 3
+        return x
+    elif hand == "グー" and comhand == "パー":
+        x = 1
+        return x
+    elif hand == "パー" and comhand == "チョキ":
+        x = 1
+        return x
+    elif hand == "チョキ" and comhand == "グー":
+        x = 1
+        return x
+    elif hand == "グー" and comhand == "チョキ":
+        x = 2
+        return x
+    elif hand == "パー" and comhand == "グー":
+        x = 2
+        return x
+    elif hand == "チョキ" and comhand == "パー":
+        x = 2
+        return x
+    
+while True:
+    ply = input("グー、チョキ、パー、を入力してください")
 
-print("最初はグージャンケンポン")
+    if ply == "グー":
+        hand = "グー"
+    elif ply == "パー":
+        hand = "パー"
+    elif ply == "チョキ":
+        hand = "チョキ"
+    else:
+        print("じゃんけんの手を入力してください")
 
-if ene == 0:
-    print("グー")
-elif ene == 1:
-    print("パー")
-elif ene == 2:
-    print("チョキ")
+    print("最初はグージャンケンポン")
 
-if ene == hand:
-    print("あいこ")
-elif hand == 0 and ene == 1:
-    print("あなたの負け")
-elif hand == 1 and ene == 2:
-    print("あなたの負け")
-elif hand == 2 and ene == 0:
-    print("あなたの負け")
-elif hand == 0 and ene == 2:
-    print("あなたの勝ち")
-elif hand == 1 and ene == 0:
-    print("あなたの勝ち")
-elif hand == 2 and ene == 1:
-    print("あなたの勝ち")
+    comhand = get_computer_choice()
+
+    print(comhand)
+
+    result = judge(comhand,hand)
+
+    if result == 2:
+        print("あなたの勝ち")
+        break
+    elif result == 1:
+        print("あなたの負け")
+        break
+    else:
+        print("あいこでしょ")
+
+
+    
