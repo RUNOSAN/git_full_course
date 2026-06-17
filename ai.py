@@ -1,7 +1,7 @@
 from transformers import pipeline
 
-classifier = pipeline("sentiment-analysis", model="koheiduck/bert-japanese-finetuned-sentiment")
+generator = pipeline("text-generation", model="gpt2")
 
-result = classifier("お前が嫌いだ！")
+result = generator("I love pizza bicause", max_length=50)
 
-print(result)
+print(result[0]["generated_text"])
