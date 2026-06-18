@@ -1,3 +1,5 @@
+import random
+
 cir = "〇"
 
 x = "Ｘ"
@@ -24,12 +26,13 @@ def inputResult(zahyo):
     return row, col
 
 def printField(lists):
-
+    print("-----------------")
     print(f"  {lists[0][0]} |  {lists[0][1]} |  {lists[0][2]}")
     print("-----+-----+-----")
     print(f"  {lists[1][0]} |  {lists[1][1]} |  {lists[1][2]}")
     print("-----+-----+-----")
     print(f"  {lists[2][0]} |  {lists[2][1]} |  {lists[2][2]}")
+    print("-----------------")
 
 
 def printplayfield(lists,zahyo,player):
@@ -67,6 +70,7 @@ def play(lists,sign):
         except ValueError:
             print("数字で入力してください。")
 
+
 def judge(lists,player):
     y = 0
     for row in lists:
@@ -91,6 +95,22 @@ def judge(lists,player):
     if y == 0:
         print("引き分け")
         return True
+    
+def playCpu(lists):
+    while True:
+        hand = random.randint(1,9)
+
+        row, col = inputResult(hand)
+
+    
+        if lists[row][col] != none:
+            continue
+        else:
+            printplayfield(lists,hand,x)
+            break
+
+
+
 
 printField(prefield)
 
@@ -102,8 +122,7 @@ while True:
     if judge(field,cir):
         break
 
-    zahyo = play(field,x)
-    printplayfield(field,zahyo,x)
+    playCpu(field)
     if judge(field,x):
         break
 
